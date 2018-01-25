@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.demo.domain.User">
+        <id column="id" property="id"></id>
+        <result column="user_name" property="userName"></result>
+        <result column="user_age" property="userAge"></result>
+        <result column="user_sex" property="userSex"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, user_name, user_age, user_sex, create_time, update_time
+    </sql>
+
+    <sql id="dynaUserSql">
+        <if test="user.userName != null and user.userName != ''">
+            AND user_name LIKE concat('%',#{user.userName},'%')
+        </if>
+
+        <if test="user.userAge != null and user.userAge != ''">
+            AND user_age = #{user.userAge}
+        </if>
+
+        <if test="user.userSex != null and user.userSex != ''">
+            AND user_sex = #{user.userSex}
+        </if>
+
+        <if test="commonDateTime.startTime != null and commonDateTime.startTime != '' and commonDateTime.endTime != null and commonDateTime.endTime != ''">
+            AND create_time BETWEEN #{commonDateTime.startTime} AND #{commonDateTime.endTime}
+        </if>
+    </sql>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM user WHERE 1=1
+        <include refid="dynaUserSql"></include>;
+    </select>
+</mapper>
