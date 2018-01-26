@@ -13,9 +13,32 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    List<User> findAll(
+    /*
+    * 查询所有 + 条件分页
+    * */
+    public List<User> findAll(
             @Param("commonPage") CommonPage commonPage,
             @Param("user") User user,
             @Param("commonDateTime") CommonDateTime commonDateTime
     );
+
+    /*
+    *查询总数
+    * */
+    public Integer countAll();
+
+    /*
+    * 新增
+    * */
+    public void insertOne(User user);
+
+    /*
+    * 编辑
+    * */
+    public void updateOne(User user);
+
+    /*
+    * 删除
+    * */
+    public void deleteOne(User user);
 }

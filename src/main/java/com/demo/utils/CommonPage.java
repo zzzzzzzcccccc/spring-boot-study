@@ -2,20 +2,15 @@ package com.demo.utils;
 
 public class CommonPage {
 
-    private Integer pageNum;
+    private Integer pageNum = 1; // 当前页数
 
-    private Integer pageSize;
+    private Integer pageSize = 10; // 分页尺寸
 
-    private Integer totalPage;
+    private Integer totalPage; // 总页数
 
-    private Integer total;
+    private Integer total; // 总条目数
 
-    private String sortType;
-
-    private String sortName;
-
-    public CommonPage() {
-    }
+    private Integer limitPageNum;
 
     public Integer getPageNum() {
         return pageNum;
@@ -34,11 +29,8 @@ public class CommonPage {
     }
 
     public Integer getTotalPage() {
-        return totalPage;
-    }
 
-    public void setTotalPage(Integer totalPage) {
-        this.totalPage = totalPage;
+        return (this.total + this.pageSize - 1) / this.pageSize;
     }
 
     public Integer getTotal() {
@@ -49,20 +41,8 @@ public class CommonPage {
         this.total = total;
     }
 
-    public String getSortType() {
-        return sortType;
-    }
-
-    public void setSortType(String sortType) {
-        this.sortType = sortType;
-    }
-
-    public String getSortName() {
-        return sortName;
-    }
-
-    public void setSortName(String sortName) {
-        this.sortName = sortName;
+    public Integer getLimitPageNum() {
+        return (this.pageNum - 1) * this.pageSize;
     }
 
     @Override
@@ -72,32 +52,7 @@ public class CommonPage {
                 ", pageSize=" + pageSize +
                 ", totalPage=" + totalPage +
                 ", total=" + total +
-                ", sortType='" + sortType + '\'' +
-                ", sortName='" + sortName + '\'' +
+                ", limitPageNum=" + limitPageNum +
                 '}';
-    }
-
-    /*
-    * 判断是否存在分页
-    * */
-    public CommonPage isNull(CommonPage commonPage) {
-
-        if (commonPage.getPageNum() == null || commonPage.getPageNum().equals("")) {
-            commonPage.setPageNum(1);
-        }
-
-        if (commonPage.getPageSize() == null || commonPage.getPageSize().equals("")) {
-            commonPage.setPageSize(10);
-        }
-
-        if (commonPage.getSortType() == null || commonPage.getSortType().equals("")) {
-            commonPage.setSortType("DESC");
-        }
-
-        if (commonPage.getSortName() == null || commonPage.getSortName().equals("")) {
-            commonPage.setSortName("id");
-        }
-
-        return commonPage;
     }
 }

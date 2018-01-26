@@ -3,7 +3,8 @@ package com.demo.enums;
 public enum CommonEnums {
     ERROR(500, "未知错误"),
     SUCCESS(200, "success"),
-    NULL(404, "未查询到数据")
+    NULL(404, "未查询到数据"),
+    PARAMS(301, "请求参数错误")
     ;
 
     private Integer code;

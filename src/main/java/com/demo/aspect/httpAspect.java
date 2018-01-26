@@ -42,7 +42,7 @@ public class httpAspect {
         logger.info("调用方法={}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
 
         // params
-        logger.info("参数={}", joinPoint.getArgs());
+        logger.info("参数={}", request.getQueryString());
     }
 
     /*

@@ -9,5 +9,6 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.demo.domain
+  config-location: classpath:myBatis-config.xml
 debug: false
 
