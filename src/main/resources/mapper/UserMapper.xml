@@ -38,15 +38,15 @@
 
     <select id="findAll" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List"></include>
+        <include refid="Base_Column_List" />
         FROM user WHERE 1=1
-        <include refid="userSearch"></include>
+        <include refid="userSearch" />
         ORDER BY id DESC
         limit #{commonPage.limitPageNum},#{commonPage.pageSize};
     </select>
 
     <select id="countAll" resultType="INT">
-        SELECT COUNT(*) FROM user WHERE 1=1;
+        SELECT COUNT(*) FROM user WHERE 1=1 <include refid="userSearch" />;
     </select>
 
     <sql id="checkUpdate">
@@ -67,7 +67,7 @@
     </insert>
 
     <update id="updateOne" parameterType="com.demo.domain.User">
-        UPDATE user SET <include refid="checkUpdate"></include> WHERE id = #{id};
+        UPDATE user SET <include refid="checkUpdate" /> WHERE id = #{id};
     </update>
 
     <delete id="deleteOne" parameterType="com.demo.domain.User">

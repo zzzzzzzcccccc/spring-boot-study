@@ -25,7 +25,10 @@ public interface UserMapper {
     /*
     *查询总数
     * */
-    public Integer countAll();
+    public Integer countAll(
+            @Param("user") User user,
+            @Param("commonDateTime") CommonDateTime commonDateTime
+    );
 
     /*
     * 新增

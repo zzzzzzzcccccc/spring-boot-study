@@ -1,5 +1,6 @@
 package com.demo.aspect;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @Aspect
 @Component
@@ -42,7 +44,7 @@ public class httpAspect {
         logger.info("调用方法={}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
 
         // params
-        logger.info("参数={}", request.getQueryString());
+        logger.info("参数={}", joinPoint.getArgs());
     }
 
     /*
@@ -50,7 +52,7 @@ public class httpAspect {
     * */
     @After("log()")
     public void doAfter() {
-        logger.info("http请求完毕");
+        logger.info("http请求完毕={}", new Date().getTime());
     }
 
     /*

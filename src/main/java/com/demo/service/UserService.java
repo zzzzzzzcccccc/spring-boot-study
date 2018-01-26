@@ -32,7 +32,7 @@ public class UserService {
 
         Map<String, Object> map = new HashMap<String, Object>();
 
-        commonPage.setTotal(userMapper.countAll());
+        commonPage.setTotal(userMapper.countAll(user, commonDateTime));
 
         List<User> allUser = userMapper.findAll(commonPage, user, commonDateTime);
 
